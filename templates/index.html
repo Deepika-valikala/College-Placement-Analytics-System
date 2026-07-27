@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container-fluid px-5 mt-4">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                🎓 College Placement Analytics System
+            </a>
+
+            <span class="navbar-text text-white">
+                Flask • PostgreSQL • Chart.js
+            </span>
+        </div>
+    </nav>
+
+    <div class="card shadow border-0 mt-4">
+
+        <div class="card-header bg-dark text-white">
+            Filters
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <!-- Branch -->
+                <div class="col-md-2">
+                    <label class="form-label">Branch</label>
+                    <select class="form-select" id="branchFilter">
+                        <option value="">All Branches</option>
+                    </select>
+                </div>
+
+                <!-- Year -->
+                <div class="col-md-2">
+                    <label class="form-label">Graduation Year</label>
+                    <select class="form-select" id="yearFilter">
+                        <option value="">All Years</option>
+                    </select>
+                </div>
+
+                <!-- Company -->
+                <div class="col-md-2">
+                    <label class="form-label">Company</label>
+                    <select class="form-select" id="companyFilter">
+                        <option value="">All Companies</option>
+                    </select>
+                </div>
+
+                <!-- Status -->
+                <div class="col-md-2">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" id="statusFilter">
+                        <option value="">All</option>
+                        <option value="placed">Placed</option>
+                        <option value="unplaced">Unplaced</option>
+                    </select>
+                </div>
+
+                <!-- Search -->
+                <div class="col-md-2">
+                    <label class="form-label">Search Student</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="searchBox"
+                        placeholder="Enter student name">
+                </div>
+
+                <!-- Apply Button -->
+                <div class="col-md-1 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" id="applyFilters">
+                        Apply
+                    </button>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="col-md-1 d-flex align-items-end">
+                    <button class="btn btn-secondary w-100" id="resetFilters">
+                        Reset
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- KPI Cards -->
+    <div class="row">
+
+      <div class="col-md-3">
+    <div class="card shadow border-0 text-center">
+        <div class="card-body">
+
+            <i class="bi bi-people-fill text-primary fs-1"></i>
+
+            <h6 class="mt-2">Total Students</h6>
+
+             <h2 id="totalStudents">{{ total_students }}</h2>
+
+        </div>
+    </div>
+</div>
+        <div class="col-md-3">
+    <div class="card shadow border-0 text-center">
+        <div class="card-body">
+
+            <i class="bi bi-person-check-fill text-success fs-1"></i>
+
+            <h6 class="mt-2">Placed Students</h6>
+
+             <h2 id="placedStudents">{{ placed_students }}</h2>
+
+        </div>
+    </div>
+</div>
+
+        <div class="col-md-3">
+    <div class="card shadow border-0 text-center">
+        <div class="card-body">
+
+            <i class="bi bi-graph-up-arrow text-warning fs-1"></i>
+
+            <h6 class="mt-2">Placement Rate</h6>
+
+           <h2 id="placementRate">{{ placement_rate }}%</h2>
+
+        </div>
+    </div>
+</div>
+       <div class="col-md-3">
+    <div class="card shadow border-0 text-center">
+        <div class="card-body">
+
+            <i class="bi bi-currency-rupee text-danger fs-1"></i>
+
+            <h6 class="mt-2">Average Package</h6>
+
+            <h2 id="avgPackage">{{ avg_package }} LPA</h2>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <!-- First Row of Charts -->
+  <div class="row mt-4">
+
+    <div class="col-xl-6 col-lg-6 col-md-12 mb-4">
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-primary text-white">
+                <i class="bi bi-bar-chart-fill"></i>
+                Branch-wise Placements
+            </div>
+
+            <div class="card-body">
+                <canvas id="branchChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-success text-white">
+                <i class="bi bi-pie-chart-fill"></i>
+                Company-wise Hiring
+            </div>
+
+            <div class="card-body">
+                <canvas id="companyChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+    <!-- Second Row of Charts -->
+   <div class="row">
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-warning text-dark">
+                <i class="bi bi-graph-up-arrow"></i>
+                Year-wise Placements
+            </div>
+
+            <div class="card-body">
+                <canvas id="yearChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="card shadow border-0 h-100">
+
+            <div class="card-header bg-danger text-white">
+                <i class="bi bi-currency-rupee"></i>
+                Package Distribution
+            </div>
+
+            <div class="card-body">
+                <canvas id="packageChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+    <!-- Placed Students Table -->
+   <div class="card shadow border-0 mt-4">
+
+    <div class="card-header bg-dark text-white">
+        <i class="bi bi-table"></i>
+        Placed Students
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Branch</th>
+                        <th>Company</th>
+                        <th>Package (LPA)</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Your JS -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
