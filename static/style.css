@@ -38,3 +38,210 @@ h2{
     transform:translateY(-5px);
     box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
+/* ================================
+   DASHBOARD WIDTH & ALIGNMENT
+================================ */
+
+.dashboard-container {
+    width: 96%;
+    max-width: 1700px;
+    margin: 20px auto;
+    padding: 0;
+}
+
+
+/* Navbar */
+.dashboard-container .navbar {
+    min-height: 70px;
+    padding: 0 24px;
+}
+
+
+/* Filters */
+.dashboard-container > .card {
+    margin-top: 22px !important;
+    border-radius: 12px !important;
+}
+
+.dashboard-container .form-label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.dashboard-container .form-select,
+.dashboard-container .form-control {
+    height: 48px;
+    border-radius: 8px;
+}
+
+
+/* ================================
+   KPI CARDS
+================================ */
+
+.dashboard-container .row-cols-md-5 {
+    margin-top: 24px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.dashboard-container .row-cols-md-5 > .col {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.dashboard-container .row-cols-md-5 .card {
+    min-height: 205px;
+    border-radius: 14px;
+}
+
+.dashboard-container .row-cols-md-5 .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-container .row-cols-md-5 h6 {
+    font-size: 16px;
+}
+
+.dashboard-container .row-cols-md-5 h2 {
+    font-size: 34px;
+}
+
+
+/* ================================
+   CHARTS
+================================ */
+
+.dashboard-container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.dashboard-container .row > div {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.dashboard-container canvas {
+    width: 100% !important;
+    height: 350px !important;
+}
+
+
+/* ================================
+   TABLE
+================================ */
+
+.dashboard-container .table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dashboard-container .table th,
+.dashboard-container .table td {
+    padding: 13px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        width: 94%;
+    }
+
+    .dashboard-container canvas {
+        height: 300px !important;
+    }
+}
+
+/* =================================
+   DASHBOARD MAIN CONTAINER
+================================= */
+
+.dashboard-container {
+    width: calc(100% - 60px);
+    max-width: none;
+    margin: 20px 30px;
+    padding: 0 !important;
+}
+
+
+/* =================================
+   NAVBAR + FILTERS
+================================= */
+
+.dashboard-container .navbar,
+.dashboard-container > .card {
+    width: 100%;
+}
+
+
+/* =================================
+   ALL ROWS
+================================= */
+
+.dashboard-container .row {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+/* =================================
+   KPI CARDS
+================================= */
+
+.dashboard-container .row-cols-md-5 {
+    margin-top: 24px;
+}
+
+.dashboard-container .row-cols-md-5 > .col {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.dashboard-container .row-cols-md-5 .card {
+    width: 100%;
+    min-height: 205px;
+}
+
+
+/* =================================
+   CHARTS
+================================= */
+
+.dashboard-container .row > .col-lg-6,
+.dashboard-container .row > .col-xl-6 {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.dashboard-container .row .card {
+    width: 100%;
+}
+
+
+/* =================================
+   TABLE
+================================= */
+
+.dashboard-container > .card {
+    width: 100%;
+}
+
+
+/* =================================
+   CHART HEIGHT
+================================= */
+
+.dashboard-container canvas {
+    width: 100% !important;
+    height: 350px !important;
+}
