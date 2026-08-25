@@ -1,39 +1,32 @@
 # College Placement Analytics System
 
-## Features
-
-✔ Flask Backend
-
-✔ PostgreSQL Database
-
-✔ Interactive Dashboard
-
-✔ SQL Analytics
-
-✔ Chart.js Visualization
-
-✔ Placement Reports
-
-✔ Company Hiring Analytics
-
-✔ Branch-wise Placement Trends
-
-✔ Year-wise Analysis
-
 ## Tech Stack
+- Python
+- Flask
+- PostgreSQL
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+- Chart.js
 
-Python Flask
+## Features
+- Placement analytics dashboard
+- KPI cards
+- Branch-wise placement analysis
+- Company hiring statistics
+- Year-wise placement trends
+- Package distribution
+- Student placement table
+- Dynamic filters
+- Search functionality
 
-PostgreSQL
+## Database
+- Students
+- Branches
+- Companies
+- Placements
 
-Chart.js
-
-HTML
-
-CSS
-
-Bootstrap
-
-JavaScript
-
+## Screenshots
+(Add dashboard screenshots)
 Pandas
